@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Description
  * @auther Admin
@@ -28,7 +30,8 @@ public class AuthorizeController {
 
     @GetMapping("/callback")
     public String  callbcck(@RequestParam(name = "code") String code,
-                            @RequestParam(name = "state") String state){
+                            @RequestParam(name = "state") String state,
+                            HttpServletRequest request){
 
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();//当光标在对象accessTokenDTO后面时可以 按shelf + enter快捷键到下一行
@@ -39,9 +42,14 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_uri(clientUri);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);//new AccessTokenDTO() 按ctrl + alt +v快捷键
         GithubUser user = githubProvider.getUser(accessToken);
-        System.out.println("name:"+user.getName());
-
-        return "index";
+        if(user !=null){
+            //登录成功
+            request.getSession().setAttribute("user",user);
+            return "redirect:/";
+        }else {
+            //登录失败
+            return "redirect:/";
+        }
 
     }
 
