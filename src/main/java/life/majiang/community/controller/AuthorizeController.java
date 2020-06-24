@@ -33,7 +33,6 @@ public class AuthorizeController {
                             @RequestParam(name = "state") String state,
                             HttpServletRequest request){
 
-
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();//当光标在对象accessTokenDTO后面时可以 按shelf + enter快捷键到下一行
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(clientSecret);
