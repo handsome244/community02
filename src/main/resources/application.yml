@@ -1,0 +1,16 @@
+server:
+  port: 8887
+github:
+  client:
+    id: ece3a7c5f075867e3e02
+    secret: 1764f8ffa1bdce8bacec4160745b4dc1945c1b92
+    uri: http://localhost:8887/callback
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/db6?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
